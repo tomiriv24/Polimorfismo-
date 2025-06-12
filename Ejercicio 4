@@ -1,0 +1,30 @@
+class Empleado:
+    def calcular_salario(self):
+        raise NotImplementedError("Este método debe ser implementado por una subclase")
+
+class EmpleadoPorHora(Empleado):
+    def __init__(self, horas, tarifa):
+        self.horas = horas
+        self.tarifa = tarifa
+
+    def calcular_salario(self):
+        return self.horas * self.tarifa
+
+class EmpleadoFijo(Empleado):
+    def __init__(self, salario_mensual):
+        self.salario_mensual = salario_mensual
+
+    def calcular_salario(self):
+        return self.salario_mensual
+
+empleados = [
+    EmpleadoPorHora(horas=40, tarifa=15),
+    EmpleadoFijo(salario_mensual=2000),
+    EmpleadoPorHora(horas=20, tarifa=12)
+]
+
+salario_total = 0
+for empleado in empleados:
+    salario_total += empleado.calcular_salario()
+
+print(f"Salario total a pagar: ${salario_total}")
